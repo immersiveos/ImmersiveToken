@@ -5,7 +5,7 @@ import "./zeppelin/payment/PullPayment.sol";
 
 /*
 *   Immersive token and ICO
-*   http://github.com/immersiveOS/ico  http://immersiveos.com
+*   http://github.com/immersiveOS/ico  https://immersiveos.com
 *   Copyright the ImmersiveOS Core Dev Team <devteam@immersiveos.com>
 */
 contract ImmersiveToken is PausableToken, PullPayment {

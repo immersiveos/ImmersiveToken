@@ -4,13 +4,12 @@ const log = console.log;
 const ImmersiveToken = artifacts.require('./ImmersiveToken.sol');
 const BigNumber = web3.BigNumber;
 
-// todo: take this from truffle config
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
 /*
 *   Immersive token and ICO tests
 *   http://github.com/immersiveOS/ico http://immersiveos.com
- */
+*/
 contract('ImmersiveToken', function(accounts) {
 
   // constant useful params
