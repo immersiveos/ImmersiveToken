@@ -1,0 +1,123 @@
+solc --gas contracts/ImmersiveToken.sol
+
+======= ImmersiveToken.sol:ImmersiveToken =======
+Gas estimation:
+construction:
+   145049 + 1358400 = 1503449
+external:
+   fallback:    646
+   allowance(address,address):  1155
+   approve(address,uint256):    22284
+   balanceOf(address):  769
+   decimals():  315
+   finalizeFunding():   infinite
+   fund():      infinite
+   fundingEndBlock():   713
+   fundingGoal():       647
+   fundingInProgress(): 431
+   fundingStartBlock(): 845
+   fundingSuccessful(): 965
+   name():      584
+   opsAccount():        871
+   owner():     739
+   pause():     22176
+   paused():    679
+   payments(address):   1027
+   refund():    infinite
+   symbol():    892
+   totalPayments():     405
+   totalSupply():       471
+   transfer(address,uint256):   infinite
+   transferFrom(address,address,uint256):       infinite
+   transferOwnership(address):  21303
+   unpause():   22047
+   withdrawPayments():  infinite
+
+======= zeppelin/SafeMath.sol:SafeMath =======
+Gas estimation:
+construction:
+   62 + 10200 = 10262
+internal:
+   add(uint256,uint256):        infinite
+   assert(bool):        infinite
+   div(uint256,uint256):        infinite
+   max256(uint256,uint256):     infinite
+   max64(uint64,uint64):        infinite
+   min256(uint256,uint256):     infinite
+   min64(uint64,uint64):        infinite
+   mul(uint256,uint256):        infinite
+   sub(uint256,uint256):        infinite
+
+======= zeppelin/lifecycle/Pausable.sol:Pausable =======
+Gas estimation:
+construction:
+   40825 + 219400 = 260225
+external:
+   owner():     479
+   pause():     21916
+   paused():    485
+   transferOwnership(address):  20823
+   unpause():   21875
+
+======= zeppelin/ownership/Ownable.sol:Ownable =======
+Gas estimation:
+construction:
+   20411 + 101200 = 121611
+external:
+   owner():     413
+   transferOwnership(address):  20757
+
+======= zeppelin/payment/PullPayment.sol:PullPayment =======
+Gas estimation:
+construction:
+   167 + 124200 = 124367
+external:
+   payments(address):   525
+   totalPayments():     365
+   withdrawPayments():  infinite
+internal:
+   asyncSend(address,uint256):  infinite
+
+======= zeppelin/token/BasicToken.sol:BasicToken =======
+Gas estimation:
+construction:
+   216 + 176800 = 177016
+external:
+   balanceOf(address):  531
+   totalSupply():       365
+   transfer(address,uint256):   infinite
+
+======= zeppelin/token/ERC20.sol:ERC20 =======
+Gas estimation:
+
+======= zeppelin/token/ERC20Basic.sol:ERC20Basic =======
+Gas estimation:
+
+======= zeppelin/token/PausableToken.sol:PausableToken =======
+Gas estimation:
+construction:
+   41264 + 666200 = 707464
+external:
+   allowance(address,address):  847
+   approve(address,uint256):    22218
+   balanceOf(address):  637
+   owner():     585
+   pause():     22022
+   paused():    569
+   totalSupply():       405
+   transfer(address,uint256):   infinite
+   transferFrom(address,address,uint256):       infinite
+   transferOwnership(address):  20973
+   unpause():   21959
+
+======= zeppelin/token/StandardToken.sol:StandardToken =======
+Gas estimation:
+construction:
+   476 + 447600 = 448076
+external:
+   allowance(address,address):  759
+   approve(address,uint256):    22218
+   balanceOf(address):  593
+   totalSupply():       405
+   transfer(address,uint256):   infinite
+   transferFrom(address,address,uint256):       infinite

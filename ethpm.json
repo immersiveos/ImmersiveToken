@@ -1,0 +1,13 @@
+{
+  "package_name": "ImmersiveToken",
+  "version": "0.0.1",
+  "description": "Ethereum ImmersiveOS ICO Contracts",
+  "authors": [
+    "Core Dev Team <devteam@immersiveos.comt>"
+  ],
+  "keywords": [
+    "immersiveOS",
+    "immersiveToken"
+  ],
+  "license": "MIT"
+}
