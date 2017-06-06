@@ -1,4 +1,5 @@
 pragma solidity ^0.4.11;
+
 import "./zeppelin/token/PausableToken.sol";
 import "./zeppelin/payment/PullPayment.sol";
 

@@ -1,5 +1,6 @@
-// Allows us to use ES6 in our migrations and tests.
-require('babel-register')
+// Allows us to use ES6 in our migrations and tests
+require('babel-register');
+require('babel-polyfill');
 
 module.exports = {
   networks: {
@@ -12,12 +13,6 @@ module.exports = {
       host: 'localhost',
       port: 8545,
       network_id: 4
-      // optional config values:
-      // gas
-      // gasPrice
-      // from - default address to use for any transaction Truffle makes during migrations
-      // provider - web3 provider instance Truffle should use to talk to the Ethereum network.
-      //          - if specified, host and port are ignored.
     },
     live: {
       network_id: 1,
