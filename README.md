@@ -2,11 +2,12 @@
 Contracts, migrations and tests for ImmersiveToken - The crypto-coin used to crowd-fund [ImmersiveOS](https://immersiveos.com).
 
 ## Setup
-`yarn install` or `npm install` to install dependencies - mostly Babel for using async/await in js tests.
+`yarn install` or `npm install`
 
-## Testing
-`yarn test` or `npm run test`
+## Test
+1. `testrpoc -i 5`
+2. `truffle test`
 
-## Deploying
+## Deploy
 `truffle deploy` or `truffle migrate`
 
