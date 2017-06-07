@@ -24,6 +24,7 @@ module.exports = function(deployer, network, accounts) {
 
     log("Livenet deployment...");
 
+    // todo: put ops account multi-sig wallet here
     const opsAddress = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
 
     const blocksPerMinutes = 3; // 20 secs average per block
@@ -40,9 +41,9 @@ module.exports = function(deployer, network, accounts) {
     log ("Ops account: " + opsAddress);
     log ("Funding gaol:" + fundingGoal);
 
-    /// todo: put unlocked account here from geth
+    /// todo: put deployer account here
     const deployerAccount = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
-    const deployGasPrice = 1000000; // todo: look at gas station no need to set 2*10^9 here
+    const deployGasPrice = 1000000;
 
     deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock, {from:deployerAccount, gas:4000000, gasPrice:deployGasPrice});
 

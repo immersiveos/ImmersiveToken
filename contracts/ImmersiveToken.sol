@@ -71,13 +71,13 @@ contract ImmersiveToken is PausableToken, PullPayment {
 
     // @notice Request a refund if campaign failed
     function refund() external onlyIfRefundable {
+
         var ethValue = balances[msg.sender];
         assert(ethValue > 0);
         balances[msg.sender] = 0;
         totalSupply = totalSupply.sub(ethValue);
 
         asyncSend(msg.sender, ethValue);
-
         refundAvailableEvent(msg.sender, ethValue, "Refund available. Use withdrawPayments to withdraw");
     }
     event refundAvailableEvent(address indexed to, uint value, string message);
