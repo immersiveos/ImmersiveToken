@@ -95,7 +95,7 @@ contract ImmersiveToken is PausableToken, PullPayment {
         fundingSuccessful = true;
 
         // finalize total supply
-        var opsTokensAllocation = totalSupply.mul(4).div(10);
+        var opsTokensAllocation = totalSupply.mul(6).div(10);
         balances[opsAccount] = balances[opsAccount].add(opsTokensAllocation);
         totalSupply = totalSupply.add(opsTokensAllocation);
 

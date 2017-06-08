@@ -155,7 +155,7 @@ contract('ImmersiveToken', function(accounts) {
     assert(payment.equals(fundWeiBalance), 'Ops eth payment should match fund final eth balance');
 
     // verify tokens allocations
-    const expectedOpsTokensPostFinalization  = totalTokensSupplyPreFinalization.mul(4).div(10);
+    const expectedOpsTokensPostFinalization  = totalTokensSupplyPreFinalization.mul(6).div(10);
     log(`Expected ops account tokens post finalization: ${getWeiString(expectedOpsTokensPostFinalization)}`);
 
     const expectedTokenSupplyPostFinalization = totalTokensSupplyPreFinalization.add(expectedOpsTokensPostFinalization);
