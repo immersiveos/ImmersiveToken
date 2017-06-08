@@ -1,6 +1,5 @@
 const ImmersiveToken = artifacts.require("./ImmersiveToken.sol");
 const log = console.log;
-
 const Web3 = require('../node_modules/web3');
 const web3 = new Web3();
 const BigNumber = web3.BigNumber;
@@ -37,7 +36,7 @@ module.exports = function(deployer, network, accounts) {
     const blocksPerHour = blocksPerMinutes * 60;
     const blocksPerDay = blocksPerHour * 24;
     const blocksInMonth = blocksPerDay * 31; // july and august are 31 days each
-    const campaginDurationMonths = 2;
+    const campaignDurationMonths = 2;
 
     const startblock = web3.eth.blockNumber;
     const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaginDurationMonths);

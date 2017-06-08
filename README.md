@@ -9,5 +9,5 @@ Contracts, migrations and tests for ImmersiveToken - The crypto-coin used to cro
 2. `truffle test`
 
 ## Deploy
-`truffle deploy` or `truffle migrate`
+`truffle deploy --reset` or `truffle migrate --reset`
 
