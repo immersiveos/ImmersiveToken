@@ -8,7 +8,8 @@ web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
 /*
 *   Immersive token and ICO tests
-*   http://github.com/immersiveOS/ico http://immersiveos.com
+*   https://github.com/immersiveos/ImmersiveToken https://immersiveos.com
+*   Copyright the ImmersiveOS Core Dev Team <devteam@immersiveos.com>
 */
 contract('ImmersiveToken', function(accounts) {
 
