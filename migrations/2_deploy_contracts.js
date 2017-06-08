@@ -16,7 +16,7 @@ module.exports = function(deployer, network, accounts) {
 
     log ("End block:" + endBlock);
     log ("Ops account: " + accounts[0])
-    log ("Funding gaol:" + fundingGoal)
+    log ("Funding goal:" + fundingGoal)
 
     deployer.deploy(ImmersiveToken,accounts[0],fundingGoal,endBlock);
 
@@ -24,7 +24,7 @@ module.exports = function(deployer, network, accounts) {
 
     log("Livenet deployment...");
 
-    // todo: put ops account multi-sig wallet here
+    // todo: put ops account multi-sig wallet address here
     const opsAddress = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
 
     const blocksPerMinutes = 3; // 20 secs average per block
@@ -35,11 +35,11 @@ module.exports = function(deployer, network, accounts) {
 
     const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaginDurationMonths);
 
-    const fundingGoal = web3.toWei(new BigNumber(1), "ether");
+    const fundingGoal = web3.toWei(new BigNumber(20000), "ether");
 
     log ("End block:" + endBlock);
     log ("Ops account: " + opsAddress);
-    log ("Funding gaol:" + fundingGoal);
+    log ("Funding goal:" + fundingGoal);
 
     /// todo: put deployer account here
     const deployerAccount = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
