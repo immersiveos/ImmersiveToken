@@ -19,6 +19,8 @@ contract('ImmersiveToken', function(accounts) {
   const ownerAccount = accounts[2];
   const funderAccount = accounts[3];
 
+  const FUND_SELECTOR = "0xb60d4288";
+
   it('Should have valid state after deployment', async () => {
 
     const fundingEndBlockParam = web3.eth.blockNumber + 100;
@@ -42,7 +44,7 @@ contract('ImmersiveToken', function(accounts) {
 
     log(`Fund method signature: ${fundSignature}`);
 
-    assert.equal(fundSignature, "0xb60d4288", "Bad fund method selector value");
+    assert.equal(fundSignature, FUND_SELECTOR, "Bad fund method selector value");
 
   })
 
@@ -56,8 +58,11 @@ contract('ImmersiveToken', function(accounts) {
     const supplyBeforeFunding = await instance.totalSupply.call();
     const fundBalance = web3.eth.getBalance(instance.address);
 
-    // funding operation
-    const fundOps = await instance.fund({value: fundingAmount, from: funderAccount});
+    // funding operation using truffle abstraction
+    //const fundOps = await instance.fund({value: fundingAmount, from: funderAccount});
+
+    // test transaction using raw contract address and fund method selector
+    const res = await web3.eth.sendTransaction({from:funderAccount, value:fundingAmount, to:instance.address, data:FUND_SELECTOR});
 
     // state after funding
     const updatedSupply = await instance.totalSupply.call();
