@@ -3,6 +3,8 @@ Contracts, migrations and tests for the pre-sale of ImmersiveToken - The crypto-
 
 ## Participate
 
+IMPORTANT: the information below is not-final and will change on July 1st, 2017 - The pre-sale event start day.
+
 * pre-sale contract address: `0x5ff03178039720e3e3249740607d58e3a67edcce`
 * Fund method selector: `0xb60d4277`
 
