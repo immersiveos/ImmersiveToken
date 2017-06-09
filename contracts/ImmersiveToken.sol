@@ -57,6 +57,10 @@ contract ImmersiveToken is PausableToken, PullPayment {
     }
     event fundingStartedEvent(address indexed opsAccountAddress, uint256 goal, uint256 endBlock);
 
+    function getFundSelector() external constant returns (bytes4) {
+        return bytes4(sha3("fund()"));
+    }
+
     // @notice Create tokens while funding is active
     function fund() payable external onlyIfFunding onlyInFundingPeriod {
         assert(msg.value > 0);

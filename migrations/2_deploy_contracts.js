@@ -23,6 +23,11 @@ module.exports = function(deployer, network, accounts) {
 
     deployer.deploy(ImmersiveToken, accounts[0], fundingGoal, endBlock);
 
+    ImmersiveToken.deployed().then ((res)=> {
+        log (`>>>> Deployed contract address: ${res.address}`);
+      }
+    );
+
   } else if (network === 'live') {
 
     log("Livenet deployment...");
@@ -54,6 +59,10 @@ module.exports = function(deployer, network, accounts) {
 
     deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock, {from:deployerAccount, gas:4000000, gasPrice:deployGasPrice});
 
+    ImmersiveToken.deployed().then ((res)=> {
+        log (`>>>> Deployed contract address: ${res.address}`);
+      }
+    );
 
   } else {
     log("Unexpected net - aborting.");
