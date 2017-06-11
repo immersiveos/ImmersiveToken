@@ -20,6 +20,7 @@
   "dependencies": {
     "ethereumjs-testrpc": "^3.0.5",
     "truffle": "^3.2.5",
-    "web3": "^0.19.0"
+    "web3": "^0.19.0",
+    "zeppelin-solidity": "^1.0.7"
   }
 }
