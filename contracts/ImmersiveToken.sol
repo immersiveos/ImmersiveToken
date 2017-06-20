@@ -1,6 +1,5 @@
 pragma solidity ^0.4.11;
 
-
 import "zeppelin-solidity/contracts/token/PausableToken.sol";
 import "zeppelin-solidity/contracts/payment/PullPayment.sol";
 
@@ -81,7 +80,7 @@ contract ImmersiveToken is PausableToken, PullPayment {
         asyncSend(msg.sender, ethValue);
         refundAvailableEvent(msg.sender, ethValue, "Refund available. Use withdrawPayments to withdraw");
     }
-    event refundAvailableEvent(address indexed to, uint value, string message);
+    event refundAvailableEvent(address indexed to, uint256 value, string message);
 
     // @notice ico finalization
     function finalizeFunding() external onlyOwner onlyIfFunding {
@@ -109,9 +108,5 @@ contract ImmersiveToken is PausableToken, PullPayment {
     function () payable {
         assert(msg.value > 0);
         asyncSend(opsAccount, msg.value);
-    }
-
-    function getFundSelector() external constant returns (bytes4) {
-        return bytes4(sha3("fund()"));
     }
 }

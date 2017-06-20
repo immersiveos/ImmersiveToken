@@ -1,5 +1,5 @@
 # ImmersiveToken
-Contracts, migrations and tests for the pre-sale of ImmersiveToken - The crypto-coin used in [ImmersiveOS](https://immersiveos.com) mixed reality activities.
+Contracts, migrations and tests for the token sale of ImmersiveToken - The crypto-coin used in [ImmersiveOS](https://immersiveos.com) mixed reality platform.
 
 ## Participate
 
@@ -25,5 +25,5 @@ https://immersiveos.com/ico.html
 2. `truffle test`
 
 ## Deploy
-`truffle deploy --reset` or `truffle migrate --reset`
+`truffle deploy --reset`
 
