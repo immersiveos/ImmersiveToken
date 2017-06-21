@@ -42,7 +42,7 @@ contract('ImmersiveToken', function(accounts) {
 
   })
 
-  it('Should allow funding while campaign in progress', async () => {
+  it('Should allow funding while campaign is in progress', async () => {
 
     const fundingEndBlock = web3.eth.blockNumber + 100;
     const fundingAmount = web3.toWei(new BigNumber(1), "ether");

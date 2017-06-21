@@ -4,7 +4,7 @@ const Web3 = require('../node_modules/web3');
 const web3 = new Web3();
 const BigNumber = web3.BigNumber;
 
-module.exports = function(deployer, network, accounts) {
+module.exports = (deployer, network, accounts) => {
 
   if (network === 'development') {
     log("Dev deployment...");
@@ -46,7 +46,7 @@ module.exports = function(deployer, network, accounts) {
     const startblock = web3.eth.blockNumber;
     const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaginDurationMonths);
 
-    const fundingGoal = web3.toWei(new BigNumber(20000), "ether");
+    const fundingGoal = web3.toWei(new BigNumber(6000), "ether");
 
     log (`Start block: ${startblock}`);
     log (`End block: ${endBlock}`);
