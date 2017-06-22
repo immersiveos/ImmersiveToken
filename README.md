@@ -5,7 +5,7 @@ Contracts, migrations and tests for the token sale of ImmersiveToken - The crypt
 
 IMPORTANT: the information below is not-final and will change on July 1st, 2017 - The pre-sale event start day.
 
-* pre-sale contract address: `0x5ff03178039720e3e3249740607d58e3a67edcce`
+* pre-sale contract address: [coming soon]
 * Fund method selector: `0xb60d4277`
 
 To participate in the pre-sale event send the following transaction on July 1st, 2017:
@@ -15,15 +15,32 @@ To participate in the pre-sale event send the following transaction on July 1st,
 
 ## Additional information
 
-https://immersiveos.com/ico.html
+https://immersiveos.com/tokensale.html
 
 ## Setup
 `yarn install` or `npm install`
 
 ## Test
-1. `testrpoc -i 5`
+
+### testrpc
+1. `testrpc -i 5`
 2. `truffle test`
 
+### testnet (ropsten)
+1. geth —testnet —rpc —unlock 0,1,2,3,4,5,6,7,8,9 —cache=2040
+2. truffle test --network testnet
+
 ## Deploy
-`truffle deploy --reset`
+
+### testrpc
+1. `testrpc -i 5`
+2. `truffle deploy --reset`
+
+### testnet
+1. geth —testnet —rpc —unlock 0,1,2,3,4,5,6,7,8,9 —cache=2040
+2. truffle migrate --network testnet
+
+### livenet
+1. geth —rpc —unlock 0
+2. truffle migrate --network live
 

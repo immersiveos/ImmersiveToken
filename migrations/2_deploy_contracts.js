@@ -7,6 +7,7 @@ const BigNumber = web3.BigNumber;
 module.exports = (deployer, network, accounts) => {
 
   if (network === 'development') {
+
     log("Dev deployment...");
 
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
@@ -28,6 +29,31 @@ module.exports = (deployer, network, accounts) => {
       }
     );
 
+  } else if (network === 'ropsten') {
+
+    log("Ropsten deployment...");
+
+    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
+
+    // wallet
+    const opsAddress = '0xeBA8e033aE04CF7B4fC9CFc3109e333692d3fb42';
+
+    const endBlock = web3.eth.blockNumber + 100;
+    const fundingGoal = web3.toWei(new BigNumber(1), "ether");
+    const startblock = web3.eth.blockNumber;
+
+    log (`Start block: ${startblock}`);
+    log (`End block: ${endBlock}`);
+    log (`Ops account: ${opsAddress}`);
+    log (`Funding goal: ${fundingGoal}`);
+
+    deployer.deploy(ImmersiveToken, opsAddress, fundingGoal, endBlock);
+
+    ImmersiveToken.deployed().then ((res)=> {
+        log (`>>>> Deployed contract address: ${res.address}`);
+      }
+    );
+
   } else if (network === 'live') {
 
     log("Livenet deployment...");
@@ -35,7 +61,7 @@ module.exports = (deployer, network, accounts) => {
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8546'));
 
     // todo: put ops account multi-sig wallet address here
-    const opsAddress = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
+    const opsAddress = '[coming-soon]';
 
     const blocksPerMinutes = 3.5; // assume 20 secs average per block
     const blocksPerHour = blocksPerMinutes * 60;
@@ -53,9 +79,9 @@ module.exports = (deployer, network, accounts) => {
     log (`Ops account: ${opsAddress}`);
     log (`Funding goal: ${fundingGoal}`);
 
-    /// todo: put deployer account here
-    const deployerAccount = '0x95db9c1e4ca634c90333f8eded6e354ad6eba9dc';
-    const deployGasPrice = 1000000;
+    const deployerAccount = 'coming-soon';
+    // see: http://ethgasstation.info/
+    const deployGasPrice = 2000000;
 
     deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock, {from:deployerAccount, gas:4000000, gasPrice:deployGasPrice});
 
