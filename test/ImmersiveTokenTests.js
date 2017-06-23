@@ -40,6 +40,12 @@ contract('ImmersiveToken', function(accounts) {
     assert(fundingGoal.equals(fundingGoalParam), 'Funding goal not set');
     assert.equal(opsAccount, opsAccountParam, 'Ops address not set');
 
+    const fundSignature = await instance.getFundSelector.call();
+
+    log(`fund() method signature: ${fundSignature}`);
+
+    assert.equal(fundSignature, FUND_SELECTOR, "Bad fund method selector value");
+
   })
 
   it('Should allow funding while campaign is in progress', async () => {

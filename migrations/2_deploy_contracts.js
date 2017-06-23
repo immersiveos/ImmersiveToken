@@ -13,7 +13,7 @@ module.exports = (deployer, network, accounts) => {
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
     const opsAddress = accounts[0];
-    const endBlock = web3.eth.blockNumber + 100;
+    const endBlock = web3.eth.blockNumber + 1000;
     const fundingGoal = web3.toWei(new BigNumber(1), "ether");
     const startblock = web3.eth.blockNumber;
 
@@ -29,14 +29,14 @@ module.exports = (deployer, network, accounts) => {
       }
     );
 
-  } else if (network === 'ropsten') {
+  } else if (network === 'testnet' || network === 'rinkeby') {
 
-    log("Ropsten deployment...");
+    log("testnet deployment...");
 
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
     // wallet
-    const opsAddress = '0xeBA8e033aE04CF7B4fC9CFc3109e333692d3fb42';
+    const opsAddress = (network === 'testnet') ?  '0xeBA8e033aE04CF7B4fC9CFc3109e333692d3fb42' : '0x39c026669c7d45ace7f8c7c270c1ce2ed6477ce4';
 
     const endBlock = web3.eth.blockNumber + 100;
     const fundingGoal = web3.toWei(new BigNumber(1), "ether");
@@ -50,7 +50,7 @@ module.exports = (deployer, network, accounts) => {
     deployer.deploy(ImmersiveToken, opsAddress, fundingGoal, endBlock);
 
     ImmersiveToken.deployed().then ((res)=> {
-        log (`>>>> Deployed contract address: ${res.address}`);
+        log (`>>>> Deployed ImmersiveToken address: ${res.address}`);
       }
     );
 
@@ -58,35 +58,33 @@ module.exports = (deployer, network, accounts) => {
 
     log("Livenet deployment...");
 
-    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8546'));
+    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
-    // todo: put ops account multi-sig wallet address here
-    const opsAddress = '[coming-soon]';
-
-    const blocksPerMinutes = 3.5; // assume 20 secs average per block
+    const blocksPerMinutes = 3; // assume 20 secs average per block
     const blocksPerHour = blocksPerMinutes * 60;
     const blocksPerDay = blocksPerHour * 24;
     const blocksInMonth = blocksPerDay * 31; // july and august are 31 days each
     const campaignDurationMonths = 2;
 
     const startblock = web3.eth.blockNumber;
-    const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaginDurationMonths);
+    const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaignDurationMonths);
 
-    const fundingGoal = web3.toWei(new BigNumber(6000), "ether");
+    const etherToUsdRate = new BigNumber(300);
+    const fundingGoalUSD = 2000000;
+    const fundingGoalEther = etherToUsdRate.mul(fundingGoalUSD);
+    const fundingGoal = web3.toWei(fundingGoalEther, "ether");
+
+    const opsAddress = '0x83D7d318402e421E610709474611140748Ae5bBF';
 
     log (`Start block: ${startblock}`);
     log (`End block: ${endBlock}`);
     log (`Ops account: ${opsAddress}`);
     log (`Funding goal: ${fundingGoal}`);
 
-    const deployerAccount = 'coming-soon';
-    // see: http://ethgasstation.info/
-    const deployGasPrice = 2000000;
-
-    deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock, {from:deployerAccount, gas:4000000, gasPrice:deployGasPrice});
+    deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock);
 
     ImmersiveToken.deployed().then ((res)=> {
-        log (`>>>> Deployed contract address: ${res.address}`);
+        log (`>>>> Deployed ImmersiveToken :-) address: ${res.address}`);
       }
     );
 

@@ -12,15 +12,25 @@ module.exports = {
     testnet: {
       host: 'localhost',
       port: 8545,
-      network_id: 3,
+      network_id: 3, //ropsten
+      gas: 4000000,
+      gasPrice: 20000000000,
       from: '0xeBA8e033aE04CF7B4fC9CFc3109e333692d3fb42' // default account for deployment
+    },
+    rinkeby: {
+      host: 'localhost',
+      port: 8545,
+      network_id: 4,
+      gas: 4000000,
+      gasPrice: 20000000000,
+      from: '0x39c026669c7d45ace7f8c7c270c1ce2ed6477ce4' // default account for deployment
     },
     live: {
       network_id: 1,
       host: 'localhost',
       port: 8546,   // Different than the default test ports
-      gasPrice: 1000000,
-      from: '[coming soon]' // default account for deployment
+      gasPrice: 20000000000,
+      from: '0x2ccf2e37b2a2a3f42e647ADC16D37e8534b75d30' // default account for deployment
     }
   }
 }

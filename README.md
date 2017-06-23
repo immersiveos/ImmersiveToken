@@ -6,7 +6,9 @@ Contracts, migrations and tests for the token sale of ImmersiveToken - The crypt
 IMPORTANT: the information below is not-final and will change on July 1st, 2017 - The pre-sale event start day.
 
 * pre-sale contract address: [coming soon]
-* Fund method selector: `0xb60d4277`
+* fund() method selector: `0xb60d4288`
+
+https://www.4byte.directory/signatures/?bytes4_signature=0xb60d4288
 
 To participate in the pre-sale event send the following transaction on July 1st, 2017:
 

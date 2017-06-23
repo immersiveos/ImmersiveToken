@@ -109,4 +109,8 @@ contract ImmersiveToken is PausableToken, PullPayment {
         assert(msg.value > 0);
         asyncSend(opsAccount, msg.value);
     }
+
+    function getFundSelector() external constant returns (bytes4) {
+        return bytes4(sha3("fund()"));
+    }
 }
