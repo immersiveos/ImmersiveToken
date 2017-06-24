@@ -8,7 +8,7 @@ import "zeppelin-solidity/contracts/payment/PullPayment.sol";
 *   https://github.com/immersiveos/ImmersiveToken https://immersiveos.com
 *   Copyright the ImmersiveOS Core Dev Team <devteam@immersiveos.com>
 */
-contract ImmersiveToken is PausableToken, PullPayment {
+contract ImmersiveToken is Ownable, StandardToken, PullPayment {
     using SafeMath for uint;
 
     // standard token info
@@ -62,7 +62,7 @@ contract ImmersiveToken is PausableToken, PullPayment {
         assert(msg.value > 0);
         var amount = msg.value;
 
-        // 1 wei = 1 IMM fixed exchange rate
+        // 1 eth = 1 IMM fixed exchange rate
         balances[msg.sender] = balances[msg.sender].add(amount);
         totalSupply = totalSupply.add(amount);
         fundEvent(msg.sender, amount);
@@ -108,9 +108,5 @@ contract ImmersiveToken is PausableToken, PullPayment {
     function () payable {
         assert(msg.value > 0);
         asyncSend(opsAccount, msg.value);
-    }
-
-    function getFundSelector() external constant returns (bytes4) {
-        return bytes4(sha3("fund()"));
     }
 }
