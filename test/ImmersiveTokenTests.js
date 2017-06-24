@@ -40,12 +40,6 @@ contract('ImmersiveToken', function(accounts) {
     assert(fundingGoal.equals(fundingGoalParam), 'Funding goal not set');
     assert.equal(opsAccount, opsAccountParam, 'Ops address not set');
 
-    const fundSignature = await instance.getFundSelector.call();
-
-    log(`fund() method signature: ${fundSignature}`);
-
-    assert.equal(fundSignature, FUND_SELECTOR, "Bad fund method selector value");
-
   })
 
   it('Should allow funding while campaign is in progress', async () => {
@@ -378,25 +372,6 @@ contract('ImmersiveToken', function(accounts) {
     assert(fundSupplyPostFund.equals(fundSypplyPreFund), 'Expected fund supply to remain the same');
     assert(fundBalancePostFund.equals(fundBalancePreFund), 'Expected fund balance to remain the same');
     assert(funderBalancePostFund.equals(funderBalancePreFund), 'Expected funder balance to remain the same');
-
-  })
-
-  it('Should accept direct donations', async () => {
-
-    const fundingEndBlock = web3.eth.blockNumber + 100;
-    const donationAmmount = web3.toWei(new BigNumber(12), 'ether');
-
-    const instance = await ImmersiveToken.new(opsAccountParam, fundingGoalParam, fundingEndBlock, {from: ownerAccount});
-    const fundBalancePreDonation = web3.eth.getBalance(instance.address);
-
-    const transactionAddress = web3.eth.sendTransaction({from:funderAccount, to:instance.address, value: donationAmmount});
-    const receipt = web3.eth.getTransactionReceipt(transactionAddress);
-    log (`Gas used: ${receipt.gasUsed}`);
-
-    const fundBalancePostDonation = web3.eth.getBalance(instance.address);
-    log(`Fund balance post donation: ${getWeiString(fundBalancePostDonation)}`);
-
-    assert(fundBalancePostDonation.equals(fundBalancePreDonation.add(donationAmmount)), "Expected fund to receive a donation");
 
   })
 
