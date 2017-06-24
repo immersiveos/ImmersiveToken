@@ -104,9 +104,4 @@ contract ImmersiveToken is Ownable, StandardToken, PullPayment {
     }
     event fundingEndedEvent(uint256 mintedTokens, string message);
 
-    //@notice allow donations
-    function () payable {
-        assert(msg.value > 0);
-        asyncSend(opsAccount, msg.value);
-    }
 }
