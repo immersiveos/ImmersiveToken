@@ -94,7 +94,7 @@ contract ImmersiveToken is Ownable, StandardToken, PullPayment {
 
         if (totalSupply < fundingGoal) {
             fundingSuccessful = false;
-            fundingEndedEvent(0, "Campaign failed. You may withdraw all your funds");
+            FundingEndedEvent(0, "Campaign failed. You may withdraw all your funds");
             return;
         }
 
