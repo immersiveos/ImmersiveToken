@@ -13,7 +13,7 @@ module.exports = (deployer, network, accounts) => {
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
     const opsAddress = accounts[0];
-    const endBlock = web3.eth.blockNumber + 1000;
+    const endBlock = web3.eth.blockNumber + 100;
     const fundingGoal = web3.toWei(new BigNumber(1), "ether");
     const startblock = web3.eth.blockNumber;
 
@@ -29,34 +29,9 @@ module.exports = (deployer, network, accounts) => {
       }
     );
 
-  } else if (network === 'testnet' || network === 'rinkeby') {
+  } else if (network === 'testnet') {
 
-    log("testnet deployment...");
-
-    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
-
-    // wallet
-    const opsAddress = (network === 'testnet') ?  '0xeBA8e033aE04CF7B4fC9CFc3109e333692d3fb42' : '0x39c026669c7d45ace7f8c7c270c1ce2ed6477ce4';
-
-    const endBlock = web3.eth.blockNumber + 100;
-    const fundingGoal = web3.toWei(new BigNumber(1), "ether");
-    const startblock = web3.eth.blockNumber;
-
-    log (`Start block: ${startblock}`);
-    log (`End block: ${endBlock}`);
-    log (`Ops account: ${opsAddress}`);
-    log (`Funding goal: ${fundingGoal}`);
-
-    deployer.deploy(ImmersiveToken, opsAddress, fundingGoal, endBlock);
-
-    ImmersiveToken.deployed().then ((res)=> {
-        log (`>>>> Deployed ImmersiveToken address: ${res.address}`);
-      }
-    );
-
-  } else if (network === 'live') {
-
-    log("Livenet deployment...");
+    log("Testnet (3) deployment...");
 
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
@@ -67,21 +42,55 @@ module.exports = (deployer, network, accounts) => {
     const campaignDurationMonths = 2;
 
     const startblock = web3.eth.blockNumber;
+    const endBlock = web3.eth.blockNumber + (blocksInMonth * campaignDurationMonths);
+
+    const etherToUsdRate = 266.1;
+    const fundingGoalUSD = 2000000.0;
+    const fundingGoalEther = fundingGoalUSD / etherToUsdRate;
+    const fundingGoalWei = web3.toWei(fundingGoalEther, "ether");
+
+    const opsAddress = '0x72a4Aa827665ba9b7Ee35f3600744da3845842a2';
+
+    log (`Start block: ${startblock}`);
+    log (`End block: ${endBlock}`);
+    log (`Ops account: ${opsAddress}`);
+    log (`Funding goal: ${fundingGoalWei} wei (${web3.fromWei(fundingGoalWei)} eth)`);
+
+    deployer.deploy(ImmersiveToken,opsAddress,fundingGoalWei,endBlock);
+
+    ImmersiveToken.deployed().then ((res)=> {
+        log (`>>>> Deployed ImmersiveToken :-) address: ${res.address}`);
+      }
+    );
+
+  } else if (network === 'live') {
+
+    log("Livenet deployment...");
+
+    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8546'));
+
+    const blocksPerMinutes = 3; // assume 20 secs average per block
+    const blocksPerHour = blocksPerMinutes * 60;
+    const blocksPerDay = blocksPerHour * 24;
+    const blocksInMonth = blocksPerDay * 31; // july and august are 31 days each
+    const campaignDurationMonths = 2;
+
+    const startblock = web3.eth.blockNumber;
     const endBlock = web3.eth.blockNumber.add(blocksInMonth * campaignDurationMonths);
 
-    const etherToUsdRate = new BigNumber(300);
-    const fundingGoalUSD = 2000000;
-    const fundingGoalEther = etherToUsdRate.mul(fundingGoalUSD);
-    const fundingGoal = web3.toWei(fundingGoalEther, "ether");
+    const etherToUsdRate = 266.1;
+    const fundingGoalUSD = 2000000.0;
+    const fundingGoalEther = fundingGoalUSD / etherToUsdRate;
+    const fundingGoalWei = web3.toWei(fundingGoalEther, "ether");
 
     const opsAddress = '0x83D7d318402e421E610709474611140748Ae5bBF';
 
     log (`Start block: ${startblock}`);
     log (`End block: ${endBlock}`);
     log (`Ops account: ${opsAddress}`);
-    log (`Funding goal: ${fundingGoal}`);
+    log (`Funding goal: ${fundingGoalWei} wei (${web3.fromWei(fundingGoalWei)} eth)`);
 
-    deployer.deploy(ImmersiveToken,opsAddress,fundingGoal,endBlock);
+    deployer.deploy(ImmersiveToken,opsAddress,fundingGoalWei,endBlock);
 
     ImmersiveToken.deployed().then ((res)=> {
         log (`>>>> Deployed ImmersiveToken :-) address: ${res.address}`);
